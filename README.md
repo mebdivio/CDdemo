@@ -1,36 +1,26 @@
-# CDdemo - External repository for my Github Actions demo project
+# CDdemo - External server for my Github Actions demo project
 
-Continuous Deployment with Github Actions on Divio
---------------------------------------------------
-Setting up a deployment service environment in Github for continuous deployment using Github Actions.
+Continuous deployment with Github Actions on Divio
+==================================================
+Setting up a deployment service environment for continuous deployment using Github Actions.
  
-Create a repository on Github
------------------------------
-Create a new repository on Github with a master branch.
+* Create a new repository on Github with a master branch.
 
-Create a project on Divio control panel
----------------------------------------
-In the Divio Control Panel, create a new project with the new github repository as your external repository 
+* Create a new project on `Divio control panel <https://control.divio.com/control/>`_ with the new github repository as your external git server 
 
-Add SSH public Key to Github repository
----------------------------------------
-Add the SSH Public key provided by Divio to your Github repository Settings Deploy Key and check the Allow write access to allow Divio to push in to the repository.
+* Add the SSH public key provided by Divio to your Github repository **Settings** **Deploy Key** and check the **Allow write access** to allow Divio to push in to the repository.
 
-Configure Webhook
------------------
-Configure Webhooks for the github to send signals when commits or pus are made. See how to configure Webhooks in our Developer Handbook.
+* Configure Webhooks for the github to send signals when commits are made. See how to configure webhooks in `Divio Developer Handbook <https://docs.divio.com/en/latest/how-to/resources-configure-git/#configure-a-webhook-for-the-git-repository>`_.
 
-Set the Secret Keys
--------------------
-In your github repository, go to Secrets from the Settings tab and add New secrets of your Divio access token and your project-id (from Divio control panel url  https://control.divio.com/control/<organisation-id>/edit/<project-id>/) as DIVIO_API_TOKEN and DIVIO_PROJECT_ID environment variables respectively.
+* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your Divio access token and your **project-id** (from Divio control panel url  https://control.divio.com/control/<*organisation-id*>/edit/<**project-id**>/) as `DIVIO_API_TOKEN` and `DIVIO_PROJECT_ID` environment variables respectively.
 
 Setup your workflow
 -------------------
 Checkout to master branch, open the Actions tab, you may also choose from the existing continuous deployment workflows, for this demo skip to set up a workflow yourself and a main.yml file will be created for you. You can rename it anything you want. 
 
-Configure the workflow 
------------------------
-Configure your yaml file as follows. Commit and clone the repository.
+* Configure your yaml file as follows. Commit and clone the repository.
+
+.. code-block::
 
     # This workflow will install Divio CLI and deploy into Divio on a push event
     
@@ -79,7 +69,5 @@ Configure your yaml file as follows. Commit and clone the repository.
           divio project deploy --remote-id "$DIVIO_PROJECT_ID"
 
 
-On the terminal
----------------
-Create a directory git initialize and clone your github repository.
-Git checkout to master and develop your applications and git push to github actions to automatically deploy your changes to Divio.
+* On the terminal, create a directory git initialize and clone your github repository.
+* Develop your applications and git push to github actions to automatically deploy your changes to Divio.
