@@ -30,9 +30,7 @@ Checkout to master branch, open the Actions tab, you may also choose from the ex
 
 Configure the workflow 
 -----------------------
-Configure your yaml file as follows.
-
-.. code-block:: yaml
+Configure your yaml file as follows. Commit and clone the repository.
 
     # This workflow will install Divio CLI and deploy into Divio on a push event
     
@@ -55,7 +53,7 @@ Configure your yaml file as follows.
         # DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
       # The type of runner that this job will run on
       runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
+      # Steps represent a sequence of tasks that will be executed as part of the job
       steps:
       # Checks-out the repository under $GITHUB_WORKSPACE, so this job can access it
       - uses: actions/checkout@v2
@@ -69,20 +67,17 @@ Configure your yaml file as follows.
       #   run: |
       #     curl -X POST --data 'stage="$DIVIO_PROJECT_SLUG"' --header "Authorization: Basic "$DIVIO_API_TOKEN"" https://control.divio.com/api/v1/website/"$DIVIO_PROJECT_ID"/deploy/
   
-   - name: Install Divio CLI
-     run: |
-       python -m pip install --upgrade pip
-       pip install divio-cli
+      - name: Install Divio CLI
+        run: |
+          python -m pip install --upgrade pip
+          pip install divio-cli
   
-   # Login to Divio using the access token and deploy
-   - name: Deploy to Divio
-     run: |
-       divio login "$DIVIO_API_TOKEN"
-       divio project deploy --remote-id "$DIVIO_PROJECT_ID"
- 
+      # Login to Divio using the access token and deploy
+      - name: Deploy to Divio
+        run: |
+          divio login "$DIVIO_API_TOKEN"
+          divio project deploy --remote-id "$DIVIO_PROJECT_ID"
 
-
-Commit the yaml file and clone the repository.
 
 On the terminal
 ---------------
