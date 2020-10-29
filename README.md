@@ -1,14 +1,12 @@
-# CDdemo - External server for my Github Actions demo project
+# CDdemo - External repository for Continuous deployment with Github Actions on Divio
 
-Continuous deployment with Github Actions on Divio
-==================================================
 Setting up a deployment service environment for continuous deployment using Github Actions.
  
 * Create a new repository on Github with a master branch.
 
-* Create a new project on `Divio control panel <https://control.divio.com/control/>`_ with the new github repository as your external git server 
+* Create a new project on [Divio control panel](https://control.divio.com/control/) with the new github repository as your external git server 
 
-* Add the SSH public key provided by Divio to your Github repository **Settings** **Deploy Key** and check the **Allow write access** to allow Divio to push in to the repository.
+* Add the SSH public key provided by Divio to your Github repository **Settings**, **Deploy Key** and check the **Allow write access** to allow Divio to push in to the repository.
 
 * Configure Webhooks for the github to send signals when commits are made. See how to configure webhooks in `Divio Developer Handbook <https://docs.divio.com/en/latest/how-to/resources-configure-git/#configure-a-webhook-for-the-git-repository>`_.
 
