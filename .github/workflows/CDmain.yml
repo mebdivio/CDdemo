@@ -7,7 +7,7 @@ on:
  push:
    branches: [ master ]
  
-# jobs run to execute the workflow
+# jobs run sequentially or in parallel to execute the workflow
 jobs:
  
  # This workflow contains a single job called "deploy"
@@ -43,4 +43,3 @@ jobs:
      run: |
        divio login "$DIVIO_API_TOKEN"
        divio project deploy --remote-id "$DIVIO_PROJECT_ID"
-       

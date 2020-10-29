@@ -1,4 +1,4 @@
-# CDdemo - External repository for Continuous deployment with Github Actions on Divio
+# CDdemo - External repository for Divio Continuous deployment with Github Actions
 
 Setting up a deployment service environment for continuous deployment using Github Actions.
  
@@ -69,4 +69,4 @@ On the terminal:
 * Create and git initialize a directory 
 * Clone your github repository
 * Develop your applications and 
-* git push to continuously deploy to Divio.
+* `git push` to deploy to Divio.
