@@ -8,17 +8,15 @@ Setting up a deployment service environment for continuous deployment using Gith
 
 * Add the SSH public key provided by Divio to your Github repository **Settings**, **Deploy Key** and check the **Allow write access** to allow Divio to push in to the repository.
 
-* Configure Webhooks for the github to send signals when commits are made. See how to configure webhooks in `Divio Developer Handbook <https://docs.divio.com/en/latest/how-to/resources-configure-git/#configure-a-webhook-for-the-git-repository>`_.
+* Configure Webhooks for the github to send signals when commits are made. See how to configure webhooks in [Divio Developer Handbook](https://docs.divio.com/en/latest/how-to/resources-configure-git/#configure-a-webhook-for-the-git-repository).
 
-* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your Divio access token and your **project-id** (from Divio control panel url  https://control.divio.com/control/<*organisation-id*>/edit/<**project-id**>/) as `DIVIO_API_TOKEN` and `DIVIO_PROJECT_ID` environment variables respectively.
+* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your Divio access token and your **project-id** (from Divio control panel url `https://control.divio.com/control/<organisation-id>/edit/<project-id>/` as `DIVIO_API_TOKEN` and `DIVIO_PROJECT_ID` environment variables respectively.
 
 Setup your workflow
 -------------------
 Checkout to master branch, open the Actions tab, you may also choose from the existing continuous deployment workflows, for this demo skip to set up a workflow yourself and a main.yml file will be created for you. You can rename it anything you want. 
 
-* Configure your yaml file as follows. Commit and clone the repository.
-
-.. code-block::
+Commit your yaml file with the following configuration.
 
     # This workflow will install Divio CLI and deploy into Divio on a push event
     
@@ -67,5 +65,8 @@ Checkout to master branch, open the Actions tab, you may also choose from the ex
           divio project deploy --remote-id "$DIVIO_PROJECT_ID"
 
 
-* On the terminal, create a directory git initialize and clone your github repository.
-* Develop your applications and git push to github actions to automatically deploy your changes to Divio.
+On the terminal: 
+* Create and git initialize a directory 
+* Clone your github repository
+* Develop your applications and 
+* git push to continuously deploy to Divio.
