@@ -14,7 +14,7 @@ Setting up a deployment service environment for continuous deployment using Gith
 
 Setup your workflow
 -------------------
-Checkout to master branch, open the Actions tab, you may also choose from the existing continuous deployment workflows, for this demo skip to set up a workflow yourself and a main.yml file will be created for you. You can rename it anything you want. 
+Open the **Actions** tab, you may choose from the existing continuous deployment workflows, but for now **skip to set up a workflow yourself** and a `main.yml` file will be created for you. You can rename it anything you want. 
 
 Commit your yaml file with the following configuration.
 
