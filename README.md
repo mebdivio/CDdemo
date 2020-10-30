@@ -64,7 +64,6 @@ Commit your yaml file with the following configuration.
           divio login "$DIVIO_API_TOKEN"
           divio project deploy --remote-id "$DIVIO_PROJECT_ID"
 
-
 On the terminal: 
 * Create and git initialize a directory 
 * Clone your github repository
