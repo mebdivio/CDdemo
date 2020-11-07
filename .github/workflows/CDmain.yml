@@ -31,7 +31,7 @@ jobs:
  
    - name: Deploy to Divio Cloud using the API
      run: |
-       curl -X POST --data stage=$DIVIO_PROJECT_SLUG --header Authorization: Basic $DIVIO_API_TOKEN https://control.divio.com/api/v1/website/$DIVIO_PROJECT_ID/deploy/
+       curl -X POST --data 'stage=\"$DIVIO_PROJECT_SLUG\"' --header 'Authorization: Basic \"$DIVIO_API_TOKEN\"' https://control.divio.com/api/v1/website/\$DIVIO_PROJECT_ID/deploy/
   
   #  - name: Install Divio CLI
   #    run: |
