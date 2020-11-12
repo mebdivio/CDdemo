@@ -26,23 +26,8 @@ jobs:
    steps:
    # Checks-out the repository under $GITHUB_WORKSPACE, so this job can access it
    - uses: actions/checkout@v2
-   # setting up Python 3.8 to be able to run pip to install Divio CLI
-  #  - name: Set up Python 3.8
-  #    uses: actions/setup-python@v1
-  #    with:
-  #      python-version: 3.8
- 
+   
    - name: Deploy to Divio Cloud using the API
      run: |
        curl -X POST --data "environment=$TEST_ENVIRONMENT" --header "Authorization: Token $DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
   
-  #  - name: Install Divio CLI
-  #    run: |
-  #      python -m pip install --upgrade pip
-  #      pip install divio-cli
-  
-  #  # Login to Divio using the access token and deploy
-  #  - name: Deploy to Divio
-  #    run: |
-  #      divio login "$DIVIO_API_TOKEN"
-  #      divio project deploy --remote-id "$DIVIO_PROJECT_ID"
