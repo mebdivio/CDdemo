@@ -17,6 +17,9 @@ jobs:
      DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
      DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}  
      DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
+     TEST_ENVIRONMENT: ${{ secrets.TEST_ENVIRONMENT }}
+     LIVE_ENVIRONMENT: ${{ secrets.LIVE_ENVIRONMENT }}
+  
   # The type of runner that this job will run on
    runs-on: ubuntu-latest
  # Steps represent a sequence of tasks that will be executed as part of the job
@@ -31,7 +34,7 @@ jobs:
  
    - name: Deploy to Divio Cloud using the API
      run: |
-       curl -X POST --data 'stage=\"$DIVIO_PROJECT_SLUG\"' --header 'Authorization: Basic \"$DIVIO_API_TOKEN\"' https://control.divio.com/api/v1/website/\$DIVIO_PROJECT_ID/deploy/
+       curl -X POST --data "environment=$TEST_ENVIRONMENT" --header "Authorization: Token $DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
   
   #  - name: Install Divio CLI
   #    run: |
