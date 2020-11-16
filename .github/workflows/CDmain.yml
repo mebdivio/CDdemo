@@ -15,8 +15,6 @@ jobs:
   # Setting environment variables of the secret keys for easy access
    env:
      DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
-     DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}  
-     DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
      TEST_ENVIRONMENT: ${{ secrets.TEST_ENVIRONMENT }}
      LIVE_ENVIRONMENT: ${{ secrets.LIVE_ENVIRONMENT }}
   
@@ -29,5 +27,8 @@ jobs:
    
    - name: Deploy to Divio Cloud using the API
      run: |
+  # To deploy to TEST    
+       curl -X POST --data "environment=$TEST_ENVIRONMENT" --header "Authorization: Token $DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
+   # To deploy to LIVE     
        curl -X POST --data "environment=$LIVE_ENVIRONMENT" --header "Authorization: Token $DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
   
