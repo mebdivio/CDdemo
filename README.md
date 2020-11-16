@@ -10,15 +10,15 @@ Setting up a deployment service environment for continuous deployment using Gith
 
 * Configure Webhooks for the github to send signals when commits are made. See how to configure webhooks in [Divio Developer Handbook](https://docs.divio.com/en/latest/how-to/resources-configure-git/#configure-a-webhook-for-the-git-repository).
 
-* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your [Divio API access token] (https://control.divio.com/account/desktop-app/access-token/) as `DIVIO_API_TOKEN` and the **environments uuid** as `TEST_ENVIRONMENT_ID` and `LIVE_ENVIRONMENT_ID` environment variables.
+* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your [Divio API access token](https://control.divio.com/account/desktop-app/access-token/) as `DIVIO_API_TOKEN` and the **environments uuid** as `TEST_ENVIRONMENT_ID` and `LIVE_ENVIRONMENT_ID` environment variables.
 
 You maybe able to get the environment uuids in many different ways, for example, using `curl`: From the control panel, you can get the `project-slug` and the `API access token`. 
 
 To get the `project(application)-uuid`:
-`curl https://api.divio.com/apps/v3/applications/\?slug=project-slug -H “Authorization: Token API-Access-Token”` 
+  `curl https://api.divio.com/apps/v3/applications/\?slug=project-slug -H “Authorization: Token API-Access-Token”` 
 
 To get the `environments-uuid` use the `project(application)-uuid`:
-`curl https://api.divio.com/apps/v3/environments/\?application\=application-uuid -H “Authorization: Token API-Access-Token”` 
+  `curl https://api.divio.com/apps/v3/environments/\?application\=application-uuid -H “Authorization: Token API-Access-Token”` 
 
 
 Setup your workflow
