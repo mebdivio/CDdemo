@@ -10,7 +10,16 @@ Setting up a deployment service environment for continuous deployment using Gith
 
 * Configure Webhooks for the github to send signals when commits are made. See how to configure webhooks in [Divio Developer Handbook](https://docs.divio.com/en/latest/how-to/resources-configure-git/#configure-a-webhook-for-the-git-repository).
 
-* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your Divio access token and your **project-id** (from Divio control panel url `https://control.divio.com/control/<organisation-id>/edit/<project-id>/` as `DIVIO_API_TOKEN` and `DIVIO_PROJECT_ID` environment variables respectively.
+* Setup the Secret Keys to be able to login to Divio. In your github repository, go to **Secrets** from the **Settings** tab and add **New secrets** of your [Divio API access token] (https://control.divio.com/account/desktop-app/access-token/) as `DIVIO_API_TOKEN` and the **environments uuid** as `TEST_ENVIRONMENT_ID` and `LIVE_ENVIRONMENT_ID` environment variables.
+
+You maybe able to get the environment uuids in many different ways, for example, using `curl`: From the control panel, you can get the `project-slug` and the `API access token`. 
+
+To get the `project(application)-uuid`:
+`curl https://api.divio.com/apps/v3/applications/\?slug=project-slug -H “Authorization: Token API-Access-Token”` 
+
+To get the `environments-uuid` use the `project(application)-uuid`:
+`curl https://api.divio.com/apps/v3/environments/\?application\=application-uuid -H “Authorization: Token API-Access-Token”` 
+
 
 Setup your workflow
 -------------------
@@ -35,34 +44,22 @@ Commit your yaml file with the following configuration.
       # Setting environment variables of the secret keys for easy access
       env:
         DIVIO_API_TOKEN: ${{ secrets.DIVIO_API_TOKEN }}
-        DIVIO_PROJECT_ID: ${{ secrets.DIVIO_PROJECT_ID }}  
-        # DIVIO_PROJECT_SLUG: ${{ secrets.DIVIO_PROJECT_SLUG }}
+        TEST_ENVIRONMENT_ID: ${{ secrets.TEST_ENVIRONMENT_ID }}  
+        LIVE_ENVIRONMENT_ID: ${{ secrets.LIVE_ENVIRONMENT_ID }}
       # The type of runner that this job will run on
       runs-on: ubuntu-latest
       # Steps represent a sequence of tasks that will be executed as part of the job
       steps:
       # Checks-out the repository under $GITHUB_WORKSPACE, so this job can access it
       - uses: actions/checkout@v2
-      # setting up Python 3.8 to be able to run pip to install Divio CLI
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-    
-      # - name: Deploy to Divio Cloud using the API
-      #   run: |
-      #     curl -X POST --data 'stage="$DIVIO_PROJECT_SLUG"' --header "Authorization: Basic "$DIVIO_API_TOKEN"" https://control.divio.com/api/v1/website/"$DIVIO_PROJECT_ID"/deploy/
-  
-      - name: Install Divio CLI
-        run: |
-          python -m pip install --upgrade pip
-          pip install divio-cli
-  
-      # Login to Divio using the access token and deploy
-      - name: Deploy to Divio
-        run: |
-          divio login "$DIVIO_API_TOKEN"
-          divio project deploy --remote-id "$DIVIO_PROJECT_ID"
+          
+      - name: Deploy to Divio Cloud using the API
+       run: |
+       # To deploy to TEST
+         curl -X POST --data "environment=TEST_ENVIRONMENT_ID" --header "Authorization: Token DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
+      # To deploy to LIVE
+         curl -X POST --data "environment=LIVE_ENVIRONMENT_ID" --header "Authorization: Token DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
+
 
 On the terminal: 
 * Create and git initialize a directory 
