@@ -57,9 +57,9 @@ Commit your yaml file with the following configuration.
           
       - name: Deploy to Divio Cloud using the API
        run: |
-       # To deploy to TEST
+         # To deploy to TEST
          curl -X POST --data "environment=TEST_ENVIRONMENT_ID" --header "Authorization: Token DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
-      # To deploy to LIVE
+         # To deploy to LIVE
          curl -X POST --data "environment=LIVE_ENVIRONMENT_ID" --header "Authorization: Token DIVIO_API_TOKEN" https://api.divio.com/apps/v3/deployments/
 
 
