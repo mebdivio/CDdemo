@@ -1,4 +1,4 @@
-# This workflow will install Divio CLI and deploy into Divio on a push event
+# This workflow will deploy into Divio Cloud on a push event
  
 name: Divio Continuous Deployment
  
